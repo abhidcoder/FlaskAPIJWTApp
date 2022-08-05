@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+    <title>By Abhishek Kumar Singh
+</title>
+    <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <script src=
+    "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+        $("#abhi").click(function() {
+            console.log("Not working")
+            $.ajax({
+                type:"POST",
+                data:{"id":$("#idA").val(),"passed":$("#passA").val()},
+                url: "https://abhidcoder-api.herokuapp.com/check", 
+                    success: function(result) {
+                        alert("Login Successful, Here is Your token")
+                        
+                        if(result.data!="Not Verified"){
+                            alert(result.data.token)
+                        }
+                        else{
+                            alert("Invalid Id")
+                            
+                        } 
+            },
+        error:function(result){
+            alert("Invalid Details, try again")
+            console.log("error")
+        }});
+        })});
+        </script>
+    </head>
+
+        <body class="text-center">
+            <br></br>
+            
+            <h1>Login Page</h1>
+            <br></br>
+            <br></br>
+            <label>User Name
+                <input id="idA" type="text" name="id" style="margin-left:20px;"></input>
+            </label>
+            <br></br>
+            <br></br>
+                <label >Password
+                    <input id="passA" type="password" name="pass" style="margin-left:20px;"> </input>
+                </label>
+                <br></br>
+                    <button id="abhi" type="submit" class="btn btn-success">Submit</button>
+            
+               
+        </body>
+   
+</html>
+
+

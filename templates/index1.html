@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+    <title>By Abhishek Kumar Singh
+</title>
+    <head>   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" /> </head>
+        <body class="text-center">
+            <br></br>
+            <h1>SIGN UP PAGE</h1>
+            <br></br>
+            <br></br>
+            <form action="{{ url_for('create')}}" method="POST">
+             <label>Create User Name
+                <input type="text" name="idee" style="margin-left:20px;"></input>
+            </label>
+            <br></br>
+            <br></br>
+            <div>
+            <label>Enter New Password
+                <input type="text" name="ideee" style="margin-left:20px;"></input>
+            </label>
+        </div>
+        <br></br>
+                
+                    <button type="submit">Submit</button>
+                </form>
+            <br></br>
+            <br></br>
+            <a href="https://abhidcoder-api.herokuapp.com/login">
+                <button class="btn btn-danger"> GO To Login</button>
+            </a>
+            <br></br>
+            <h1>{{mssg}}</h1>
+               
+        </body>
+ 
+</html>
