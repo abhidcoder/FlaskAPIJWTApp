@@ -7,10 +7,12 @@ import jwt
 
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = "itisatopsecret"
+
 
 
 client = MongoClient("mongodb+srv://abhi:abhi@cluster0.h7jb6cg.mongodb.net/?retryWrites=true&w=majority")
-#client = MongoClient("mongodb+srv://Idrees:idrees@mongodb-crud.irnsp.mongodb.net/test")
+#client = MongoClient("mongodb://localhost:27017/")
 db = client["Prescriptiondatabasee"] 
 collection = db["prescriptionss"]  
 
@@ -35,19 +37,37 @@ def create():
             mssg="Id already Exists" 
     return render_template("index1.html",mssg=mssg)
 
+# @app.route("/check", methods=["POST","GET"])
+# def creates():
+#     id=request.form.get("id")
+#     passed=request.form.get("passed")
+#     authorize=collection.find_one({"id":id,"passed":passed})
+#     print(authorize)
+#     if authorize:
+#         token = jwt.encode({
+#             'public_id': id,    
+#             'exp' : "1234345",       
+#         }, "secretkeyAbhishek")
+#         print(id, passed)
+#         return make_response(jsonify({"data":{'token' : token.decode('UTF-8')}}), 201)
+        
+#     return  make_response(jsonify({'data': "Not Verified"}),403)
+
+
 @app.route("/check", methods=["POST","GET"])
 def creates():
     id=request.form.get("id")
     passed=request.form.get("passed")
+    print("forgotttttttt.......")
     authorize=collection.find_one({"id":id,"passed":passed})
+    print("abhishek is printing here.......",authorize)
     if authorize:
         token = jwt.encode({
             'public_id': id,
             'exp' : "1234345",       
-        }, "secretkeyAbhishek")
-        return make_response(jsonify({"data":{'token' : token.decode('UTF-8')}}), 201)
+        }, app.config['SECRET_KEY'])
+        return make_response(jsonify({"data":{'token' : token.decode()}}), 201)
     return  make_response(jsonify({'data': "Not Verified"}),403)
-
 
 
 if __name__=="__main__":

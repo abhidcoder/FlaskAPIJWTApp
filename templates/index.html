@@ -9,28 +9,31 @@
     <script src=
     "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </script>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function(){
-        $("#abhi").click(function() {
+        $("#abhi").click(async function () {
             console.log("Not working")
-            $.ajax({
+                $.ajax({
                 type:"POST",
                 data:{"id":$("#idA").val(),"passed":$("#passA").val()},
-                url: "https://abhidcoder-api.herokuapp.com/check", 
-                    success: function(result) {
+                url: "/check", 
+                success: await function (result) {
                         alert("Login Successful, Here is Your token")
-                        
                         if(result.data!="Not Verified"){
-                            alert(result.data.token)
+                            //alert(result.data)
+                           alert(result.data.token)
                         }
                         else{
                             alert("Invalid Id")
                             
                         } 
             },
-        error:function(result){
-            alert("Invalid Details, try again")
-            console.log("error")
+            //async:false,
+
+        error:function(result,error){
+            console.log(error);
+           alert("Invalid Details, try again")
+           
         }});
         })});
         </script>
